@@ -1,0 +1,606 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book / Enquire — South Point Villas Ahangama, Sri Lanka</title>
+  <meta name="description" content="Enquire about availability and rates at South Point Villas. Seven private villas in Ahangama, Galle, Sri Lanka. Reservations handled personally by the owner.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    .book-hero {
+      padding: 7rem 0 4rem;
+      background: var(--ink);
+      color: white;
+      text-align: center;
+    }
+    .book-hero h1 { color: white; margin: 0.5rem 0 1rem; }
+    .book-hero p { color: rgba(255,255,255,0.75); max-width: 500px; margin: 0 auto; }
+
+    .book-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      padding: 5rem 0;
+    }
+
+    .book-form-wrap {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.08);
+    }
+
+    .book-form-wrap h2 {
+      font-size: 1.5rem;
+      color: var(--ocean);
+      margin-bottom: 0.25rem;
+    }
+
+    .book-form-wrap .form-subtitle {
+      color: var(--ink-light);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--divider);
+      border-radius: var(--radius);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--ink);
+      background: white;
+      transition: border-color 0.2s;
+      box-sizing: border-box;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--ocean);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      background: var(--ocean);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 0.5rem;
+    }
+
+    .form-submit:hover { background: #1a3848; transform: translateY(-1px); }
+
+    .form-note {
+      font-size: 0.8rem;
+      color: var(--ink-light);
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .form-success h3 { color: var(--ocean); margin-bottom: 0.5rem; }
+    .form-success p { color: var(--ink-light); }
+
+    .book-info { }
+
+    .book-info h2 {
+      font-size: 1.75rem;
+      color: var(--ocean);
+      margin-bottom: 0.5rem;
+    }
+
+    .book-info .divider-line { margin-bottom: 1.5rem; }
+
+    .book-info p { margin-bottom: 1rem; }
+
+    .contact-methods {
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius);
+      background: var(--sand);
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .contact-method:hover { background: var(--divider); }
+
+    .contact-method__icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-method--wa .contact-method__icon { background: #25d366; color: white; }
+    .contact-method--phone .contact-method__icon { background: var(--ocean); color: white; }
+    .contact-method--email .contact-method__icon { background: var(--terra); color: white; }
+
+    .contact-method__text { line-height: 1.3; }
+    .contact-method__label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-light); font-weight: 400; }
+    .contact-method__value { font-size: 0.95rem; }
+
+    .book-perks {
+      margin-top: 2.5rem;
+      padding: 1.5rem;
+      border: 1.5px solid var(--divider);
+      border-radius: var(--radius);
+    }
+
+    .book-perks h4 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--terra);
+      margin-bottom: 1rem;
+    }
+
+    .book-perks ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .book-perks li {
+      font-size: 0.9rem;
+      color: var(--ink-light);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .book-perks li::before {
+      content: '✓';
+      color: var(--ocean);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .villa-quick-ref {
+      background: var(--sand);
+      padding: 4rem 0;
+    }
+
+    .villa-quick-ref h2 { margin-bottom: 0.5rem; }
+
+    .villa-ref-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .villa-ref-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      text-decoration: none;
+      color: var(--ink);
+      border: 1.5px solid var(--divider);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .villa-ref-card:hover { border-color: var(--ocean); transform: translateY(-2px); }
+
+    .villa-ref-card h4 {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      color: var(--ocean);
+      margin-bottom: 0.25rem;
+    }
+
+    .villa-ref-card .villa-ref-meta {
+      font-size: 0.8rem;
+      color: var(--ink-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .villa-ref-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 500;
+    }
+
+    .badge-beach { background: rgba(27,61,79,0.1); color: var(--ocean); }
+    .badge-inland { background: rgba(200,121,65,0.1); color: var(--terra); }
+
+    @media (max-width: 1024px) {
+      .book-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .villa-ref-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .form-row { grid-template-columns: 1fr; }
+      .villa-ref-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .villa-ref-grid { grid-template-columns: 1fr; }
+      .book-form-wrap { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a href="../index.html" class="nav__logo"><span class="nav__logo-eyebrow">Ahangama, Sri Lanka</span><span class="nav__logo-text">South Point Villas</span></a>
+    <ul class="nav__links">
+      <li><a href="../villas/index.html" class="nav__link">Villas</a></li>
+      <li><a href="../experiences/index.html" class="nav__link">Experiences</a></li>
+      <li><a href="../celebrations/index.html" class="nav__link">Celebrations</a></li>
+      <li><a href="../about/index.html" class="nav__link">About</a></li>
+      <li><a href="../area/index.html" class="nav__link">The Area</a></li>
+    </ul>
+    <a href="https://wa.me/94766766766" class="nav__cta desktop" target="_blank" rel="noopener">WhatsApp Us</a>
+    <button class="nav__hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav__mobile">
+  <button class="nav__mobile-close" aria-label="Close menu" style="position:absolute;top:2rem;right:2rem;color:white;font-size:1.5rem;background:none;border:none;cursor:pointer;">✕</button>
+  <a href="../index.html">Home</a><a href="../villas/index.html">Villas</a><a href="../experiences/index.html">Experiences</a>
+  <a href="../celebrations/index.html">Celebrations</a><a href="../about/index.html">About</a><a href="../area/index.html">The Area</a>
+  <a href="https://wa.me/94766766766" class="nav__mobile-cta" target="_blank" rel="noopener">WhatsApp Us</a>
+</div>
+
+<div class="book-hero">
+  <div class="container">
+    <span class="section-label" style="color:var(--terra);">Reservations</span>
+    <h1>Book or Enquire</h1>
+    <p>Every enquiry is read and answered personally by the owner. Tell us when you want to come and what you're looking for.</p>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="book-grid">
+
+      <!-- FORM -->
+      <div class="book-form-wrap" data-fade>
+        <h2>Send an Enquiry</h2>
+        <p class="form-subtitle">We'll reply within a few hours with availability and rates.</p>
+
+        <form id="enquiry-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="first-name">First Name *</label>
+              <input type="text" id="first-name" name="first_name" required autocomplete="given-name">
+            </div>
+            <div class="form-group">
+              <label for="last-name">Last Name *</label>
+              <input type="text" id="last-name" name="last_name" required autocomplete="family-name">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone / WhatsApp Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900" autocomplete="tel">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="checkin">Arrival Date *</label>
+              <input type="date" id="checkin" name="checkin" required>
+            </div>
+            <div class="form-group">
+              <label for="checkout">Departure Date *</label>
+              <input type="date" id="checkout" name="checkout" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="adults">Adults *</label>
+              <select id="adults" name="adults" required>
+                <option value="">Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7–10">7–10</option>
+                <option value="11–20">11–20</option>
+                <option value="21–38">21–38 (full compound)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="children">Children</label>
+              <select id="children" name="children">
+                <option value="0">None</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5+">5 or more</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="villa">Villa Preference</label>
+            <select id="villa" name="villa">
+              <option value="">Not sure — please advise</option>
+              <option value="south-point-ocean">South Point Ocean (8 bed, beachfront)</option>
+              <option value="south-point-villa">South Point Villa (4 bed, beachfront)</option>
+              <option value="south-point-abbey">South Point Abbey (3 bed, beachfront)</option>
+              <option value="surf-house">Surf House (3 bed, beachfront)</option>
+              <option value="the-chalet">The Chalet (2 bed, inland)</option>
+              <option value="cottage">South Point Cottage (2 bed, inland)</option>
+              <option value="peacock-point">Peacock Point (3 bed, lakeside)</option>
+              <option value="multiple">Multiple villas / full compound</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="occasion">Occasion</label>
+            <select id="occasion" name="occasion">
+              <option value="">Holiday / leisure</option>
+              <option value="wedding">Wedding</option>
+              <option value="honeymoon">Honeymoon</option>
+              <option value="anniversary">Anniversary</option>
+              <option value="birthday">Birthday celebration</option>
+              <option value="family-reunion">Family reunion</option>
+              <option value="corporate">Corporate retreat</option>
+              <option value="yoga-retreat">Yoga / wellness retreat</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Anything else we should know?</label>
+            <textarea id="message" name="message" placeholder="Dietary requirements, special arrangements, questions about the area…"></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">Send Enquiry</button>
+          <p class="form-note">Or reach us directly — the owner reads every message personally.</p>
+        </form>
+
+        <div class="form-success" id="form-success">
+          <div style="font-size:2.5rem;margin-bottom:1rem;">✓</div>
+          <h3>Enquiry Received</h3>
+          <p>The owner will review your enquiry and reply with availability and rates, usually within a few hours.</p>
+          <p style="margin-top:1rem;"><a href="https://wa.me/94766766766" target="_blank" rel="noopener" style="color:var(--ocean);font-weight:500;">Or WhatsApp for a faster reply →</a></p>
+        </div>
+      </div>
+
+      <!-- INFO PANEL -->
+      <div class="book-info" data-fade>
+        <span class="section-label">Direct Reservations</span>
+        <h2>Reach the Owner Directly</h2>
+        <div class="divider-line"></div>
+        <p>No booking engine. No reservation team. Every enquiry at South Point Villas is handled personally — the owner reads your message, understands what you need, and replies with the right villa, the right dates, and the right plan for your stay.</p>
+        <p>The fastest way to confirm availability is WhatsApp. For detailed enquiries about group bookings, celebrations, or full-compound hires, use the form or email directly.</p>
+
+        <div class="contact-methods">
+          <a href="https://wa.me/94766766766" class="contact-method contact-method--wa" target="_blank" rel="noopener">
+            <div class="contact-method__icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.122 1.533 5.859L0 24l6.335-1.517A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.014-1.374l-.36-.214-3.762.902.946-3.667-.234-.375A9.79 9.79 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182S21.818 6.578 21.818 12 17.422 21.818 12 21.818z"/></svg>
+            </div>
+            <div class="contact-method__text">
+              <div class="contact-method__label">WhatsApp (fastest)</div>
+              <div class="contact-method__value">+94 766 766 766</div>
+            </div>
+          </a>
+          <a href="tel:+94766766766" class="contact-method contact-method--phone">
+            <div class="contact-method__icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.81 19.79 19.79 0 01.08 2.18 2 2 0 012.07 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.14 7.87a16 16 0 006 6l1.23-1.23a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div class="contact-method__text">
+              <div class="contact-method__label">Phone</div>
+              <div class="contact-method__value">+94 766 766 766</div>
+            </div>
+          </a>
+          <a href="mailto:reservations@southpointvilla.com" class="contact-method contact-method--email">
+            <div class="contact-method__icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-method__text">
+              <div class="contact-method__label">Email</div>
+              <div class="contact-method__value">reservations@southpointvilla.com</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="book-perks">
+          <h4>Book Direct — What You Get</h4>
+          <ul>
+            <li>Best available rate — no OTA commission markup</li>
+            <li>Direct line to the owner, not a call centre</li>
+            <li>Flexible itinerary planning for your whole stay</li>
+            <li>Staff briefed personally before your arrival</li>
+            <li>Complimentary beach access when neighbouring villas unoccupied</li>
+            <li>No credit card fees on bank transfer payments</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VILLA QUICK REFERENCE -->
+<section class="villa-quick-ref">
+  <div class="container">
+    <div class="text-center" data-fade style="margin-bottom:1rem;">
+      <span class="section-label">Quick Reference</span>
+      <h2>Which Villa?</h2>
+      <p style="max-width:500px;margin:0.75rem auto 0;color:var(--ink-light);">Not sure which villa is right for you? The owner will advise — or browse below.</p>
+    </div>
+    <div class="villa-ref-grid" data-stagger>
+      <a href="../villas/south-point-ocean.html" class="villa-ref-card">
+        <h4>South Point Ocean</h4>
+        <p class="villa-ref-meta">8 bedrooms · Sleeps 16 · Beachfront</p>
+        <span class="villa-ref-badge badge-beach">Beachfront</span>
+      </a>
+      <a href="../villas/south-point-villa.html" class="villa-ref-card">
+        <h4>South Point Villa</h4>
+        <p class="villa-ref-meta">4 bedrooms · Sleeps 8 · Beachfront</p>
+        <span class="villa-ref-badge badge-beach">Beachfront</span>
+      </a>
+      <a href="../villas/south-point-abbey.html" class="villa-ref-card">
+        <h4>South Point Abbey</h4>
+        <p class="villa-ref-meta">3 bedrooms · Sleeps 6 · Beachfront</p>
+        <span class="villa-ref-badge badge-beach">Beachfront</span>
+      </a>
+      <a href="../villas/surf-house.html" class="villa-ref-card">
+        <h4>Surf House</h4>
+        <p class="villa-ref-meta">3 bedrooms · Sleeps 6 · Beachfront</p>
+        <span class="villa-ref-badge badge-beach">Beachfront</span>
+      </a>
+      <a href="../villas/the-chalet.html" class="villa-ref-card">
+        <h4>The Chalet</h4>
+        <p class="villa-ref-meta">2 bedrooms · Sleeps 4 · Inland</p>
+        <span class="villa-ref-badge badge-inland">Inland</span>
+      </a>
+      <a href="../villas/south-point-cottage.html" class="villa-ref-card">
+        <h4>South Point Cottage</h4>
+        <p class="villa-ref-meta">2 bedrooms · Sleeps 4 · Inland</p>
+        <span class="villa-ref-badge badge-inland">Inland</span>
+      </a>
+      <a href="../villas/peacock-point.html" class="villa-ref-card">
+        <h4>Peacock Point</h4>
+        <p class="villa-ref-meta">3 bedrooms · Sleeps 6 · Lakeside</p>
+        <span class="villa-ref-badge badge-inland">Lakeside</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand"><div class="footer__logo">South Point <span>Villas</span></div><p>Seven exclusive private villas in Ahangama, Galle, Sri Lanka. Family-run since 2004.</p></div>
+      <div><h4>Our Villas</h4><ul class="footer__links"><li><a href="../villas/south-point-ocean.html">South Point Ocean</a></li><li><a href="../villas/south-point-villa.html">South Point Villa</a></li><li><a href="../villas/south-point-abbey.html">South Point Abbey</a></li><li><a href="../villas/surf-house.html">Surf House</a></li><li><a href="../villas/the-chalet.html">The Chalet</a></li><li><a href="../villas/south-point-cottage.html">Cottage</a></li><li><a href="../villas/peacock-point.html">Peacock Point</a></li></ul></div>
+      <div><h4>Explore</h4><ul class="footer__links"><li><a href="../experiences/index.html">Experiences</a></li><li><a href="../celebrations/index.html">Celebrations</a></li><li><a href="../about/index.html">Our Story</a></li><li><a href="../area/index.html">The Area</a></li><li><a href="index.html">Book / Enquire</a></li></ul></div>
+      <div class="footer__contact"><h4>Contact</h4><p><a href="tel:+94766766766">+94 766 766 766</a></p><p><a href="mailto:reservations@southpointvilla.com">reservations@southpointvilla.com</a></p></div>
+    </div>
+    <div class="footer__bottom"><span>© 2026 South Point Villas</span><span>Ahangama · Galle · Sri Lanka</span></div>
+  </div>
+</footer>
+<a href="https://wa.me/94766766766" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="24" height="24" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.122 1.533 5.859L0 24l6.335-1.517A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.014-1.374l-.36-.214-3.762.902.946-3.667-.234-.375A9.79 9.79 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182S21.818 6.578 21.818 12 17.422 21.818 12 21.818z"/></svg></a>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  // Form: date minimums
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('checkin').min = today;
+  document.getElementById('checkout').min = today;
+
+  document.getElementById('checkin').addEventListener('change', function() {
+    document.getElementById('checkout').min = this.value;
+  });
+
+  // Form: WhatsApp redirect on submit (no backend needed)
+  document.getElementById('enquiry-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const firstName = document.getElementById('first-name').value.trim();
+    const lastName = document.getElementById('last-name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const checkin = document.getElementById('checkin').value;
+    const checkout = document.getElementById('checkout').value;
+    const adults = document.getElementById('adults').value;
+    const children = document.getElementById('children').value;
+    const villa = document.getElementById('villa').value || 'Not sure — please advise';
+    const occasion = document.getElementById('occasion').value || 'Holiday';
+    const message = document.getElementById('message').value.trim();
+
+    if (!firstName || !lastName || !email || !checkin || !checkout || !adults) {
+      alert('Please fill in the required fields marked with *');
+      return;
+    }
+
+    const text = [
+      `Hello, I'd like to enquire about availability at South Point Villas.`,
+      ``,
+      `Name: ${firstName} ${lastName}`,
+      `Email: ${email}`,
+      `Arrival: ${checkin}`,
+      `Departure: ${checkout}`,
+      `Adults: ${adults}`,
+      `Children: ${children}`,
+      `Villa preference: ${villa}`,
+      `Occasion: ${occasion}`,
+      message ? `Notes: ${message}` : ''
+    ].filter(Boolean).join('\n');
+
+    const encoded = encodeURIComponent(text);
+    window.open(`https://wa.me/94766766766?text=${encoded}`, '_blank');
+
+    document.getElementById('enquiry-form').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  });
+</script>
+</body>
+</html>
+
+
+
