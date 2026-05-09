@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+env:
+  VERCEL_ORG_ID: team_vcL76w5VLaC0soiPU36CiUF4
+  VERCEL_PROJECT_ID: prj_okFXRpotltLBMl9hiMy3Y0N1ZdRA
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -16,4 +20,3 @@ jobs:
 
       - name: Deploy to Vercel Production
         run: vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --yes
-        working-directory: .
