@@ -284,6 +284,7 @@
   </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <nav class="nav" role="navigation" aria-label="Main navigation">
   <div class="nav__inner">
     <a href="../index.html" class="nav__logo"><span class="nav__logo-eyebrow">Ahangama, Sri Lanka</span><span class="nav__logo-text">South Point Villas</span></a>
@@ -313,7 +314,7 @@
   </div>
 </div>
 
-<section>
+<section id="main-content">
   <div class="container">
     <div class="book-grid">
 
@@ -418,6 +419,7 @@
             <textarea id="message" name="message" placeholder="Dietary requirements, special arrangements, questions about the area…"></textarea>
           </div>
 
+          <div id="form-errors" role="alert" aria-live="polite" style="display:none;color:#c0392b;font-size:0.85rem;margin-bottom:0.75rem;padding:0.75rem;background:#fef2f2;border-radius:var(--radius);border:1px solid #fca5a5;"></div>
           <button type="submit" class="form-submit">Send Enquiry</button>
           <p class="form-note">Or reach us directly — the owner reads every message personally.</p>
         </form>
@@ -486,7 +488,7 @@
 </section>
 
 <!-- VILLA QUICK REFERENCE -->
-<section class="villa-quick-ref">
+<section id="main-content" class="villa-quick-ref">
   <div class="container">
     <div class="text-center" data-fade style="margin-bottom:1rem;">
       <span class="section-label">Quick Reference</span>
@@ -573,10 +575,15 @@
     const occasion = document.getElementById('occasion').value || 'Holiday';
     const message = document.getElementById('message').value.trim();
 
+    const errBox = document.getElementById('form-errors');
     if (!firstName || !lastName || !email || !checkin || !checkout || !adults) {
-      alert('Please fill in the required fields marked with *');
+      errBox.textContent = 'Please fill in all required fields marked with *.';
+      errBox.style.display = 'block';
+      const firstEmpty = ['first-name','last-name','email','checkin','checkout','adults'].find(id => !document.getElementById(id).value.trim());
+      if (firstEmpty) document.getElementById(firstEmpty).focus();
       return;
     }
+    errBox.style.display = 'none';
 
     const text = [
       `Hello, I'd like to enquire about availability at South Point Villas.`,
@@ -601,6 +608,8 @@
 </script>
 </body>
 </html>
+
+
 
 
 
