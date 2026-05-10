@@ -74,11 +74,11 @@
 <!-- Mobile nav overlay -->
 <div class="nav__mobile" role="dialog" aria-modal="true" aria-label="Mobile navigation">
   <button class="nav__mobile-close" aria-label="Close menu" style="position:absolute;top:2rem;right:2rem;color:white;font-size:1.5rem;background:none;border:none;cursor:pointer;">✕</button>
-  <a href="villas/index.html">Villas</a>
-  <a href="experiences/index.html">Experiences</a>
-  <a href="celebrations/index.html">Celebrations</a>
-  <a href="about/index.html">About</a>
-  <a href="area/index.html">The Area</a>
+  <a href="villas/index.html">Villas<span class="nav__mobile-sub">Seven distinct properties</span></a>
+  <a href="experiences/index.html">Experiences<span class="nav__mobile-sub">Surf · yoga · cultural evenings</span></a>
+  <a href="celebrations/index.html">Celebrations<span class="nav__mobile-sub">Weddings &amp; private events</span></a>
+  <a href="about/index.html">About<span class="nav__mobile-sub">The owners &amp; the story</span></a>
+  <a href="area/index.html">The Area<span class="nav__mobile-sub">Ahangama · Galle · Mirissa</span></a>
   <a href="https://wa.me/94766766766" class="nav__mobile-cta" target="_blank" rel="noopener">WhatsApp Us</a>
 </div>
 
@@ -91,9 +91,9 @@
     <div class="hero__content">
       <span class="hero__eyebrow">Ahangama · Galle · Sri Lanka</span>
       <h1 class="hero__title">
-        Seven Villas.<br>
-        One Owner.<br>
-        <em>He Answers the Phone.</em>
+        <span class="hero__title-line">Seven Villas.</span>
+        <span class="hero__title-line">One Owner.</span>
+        <span class="hero__title-line hero__title-line--offset"><em>He Answers the Phone.</em></span>
       </h1>
       <p class="hero__subtitle">
         Beachfront, lakeside and plantation estates on Sri Lanka's golden southern coast.
@@ -199,7 +199,7 @@
     <div class="villas-grid" data-stagger>
 
       <!-- South Point Ocean -->
-      <article class="villa-card" data-type="beachfront">
+      <article class="villa-card villa-card--featured" data-type="beachfront">
         <div class="villa-card__img">
           <div class="villa-card__img-placeholder">South Point Ocean — Photo coming</div>
           <!-- <img src="../assets/images/south-point-ocean.jpg" alt="South Point Ocean villa beachfront pool" loading="lazy"> -->
@@ -386,7 +386,6 @@
         </div>
       </div>
       <div class="story-content">
-        <span class="section-label">The Architecture</span>
         <h2>A Villa Born<br>from Geoffrey Bawa's Legacy</h2>
         <div class="divider-line"></div>
         <p>South Point Villa was designed by Murad Ismail — a protégé of Sri Lanka's most celebrated architect, Geoffrey Bawa. The result is a villa that breathes with its landscape: open-sided living areas, seamless transitions between inside and out, and a quiet elegance that only comes from someone who truly understood the tropics.</p>
@@ -395,7 +394,9 @@
       </div>
     </div>
 
-    <div style="margin: 5rem 0; height: 1px; background: var(--divider);"></div>
+    <div class="story-pullquote" data-fade>
+      <span class="story-pullquote__text">"A home, not a hotel."</span>
+    </div>
 
     <!-- Abbey story -->
     <div class="story-grid reverse" data-fade>
@@ -406,7 +407,6 @@
         </div>
       </div>
       <div class="story-content">
-        <span class="section-label">The History</span>
         <h2>Dutch Colonial Walls,<br><em>Centuries of Character</em></h2>
         <div class="divider-line"></div>
         <p>South Point Abbey dates to the Dutch colonial era — built in the 1640s with walls of solid coral, believed to have housed a native doctor to the Southern Province. The original clay tiles on the ground floor remain intact. The antique doors and windows, sourced from eras when the Dutch and later the British ruled the South, give the villa a character that cannot be manufactured.</p>
@@ -418,11 +418,17 @@
   </div>
 </section>
 
+<!-- ── MANIFESTO ── -->
+<section class="manifesto-section" aria-label="Brand statement">
+  <div class="manifesto-section__inner" data-fade>
+    <p class="manifesto-section__text">Twenty years. One family.<br><em>Every guest remembered by name.</em></p>
+  </div>
+</section>
+
 <!-- ── EXPERIENCES ── -->
 <section id="main-content" class="sand">
   <div class="container">
     <div class="text-center" data-fade>
-      <span class="section-label">In & Around the Villas</span>
       <h2>Every Day, Something Remarkable</h2>
       <p style="max-width:520px;margin:1rem auto 0;">From sunrise yoga to Ayurvedic massage, Sri Lankan cooking to surfing — our staff will arrange anything the island has to offer.</p>
     </div>

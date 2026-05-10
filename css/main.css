@@ -289,7 +289,7 @@ section.sand { background: var(--sand); }
   position: relative;
   z-index: 1;
   color: var(--cream);
-  max-width: 780px;
+  max-width: 1000px;
 }
 
 .hero__eyebrow {
@@ -387,32 +387,41 @@ section.sand { background: var(--sand); }
   padding: 0;
   display: flex;
   overflow: hidden;
+  position: relative;
+}
+
+.stats-bar::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--terra) 25%, var(--terra) 75%, transparent);
 }
 
 .stats-bar__inner {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .stats-bar__item {
-  padding: 2rem 2rem;
-  border-right: 1px solid rgba(255,255,255,0.1);
+  padding: 3.5rem 1.5rem;
   text-align: center;
+  flex: 1;
 }
-
-.stats-bar__item:last-child { border-right: none; }
 
 .stats-bar__num {
   font-family: var(--font-serif);
-  font-size: 2.8rem;
+  font-size: clamp(3rem, 5vw, 4.5rem);
   color: var(--cream);
   line-height: 1;
   letter-spacing: -0.02em;
   display: block;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.4rem;
 }
 
 .stats-bar__num em { color: var(--terra); font-style: normal; }
@@ -421,7 +430,7 @@ section.sand { background: var(--sand); }
   font-size: 0.65rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.45);
   font-weight: 500;
 }
 
@@ -545,9 +554,11 @@ section.sand { background: var(--sand); }
 }
 
 .villa-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px var(--shadow-lg);
+  transform: translateY(-3px);
+  box-shadow: inset 0 0 0 2px var(--terra), 0 16px 48px var(--shadow-lg);
 }
+
+.villa-card:hover .villa-card__name { color: var(--terra); }
 
 .villa-card[data-hidden="true"] { display: none; }
 
@@ -613,6 +624,7 @@ section.sand { background: var(--sand); }
   line-height: 1.15;
   color: var(--ocean);
   margin-bottom: 0.6rem;
+  transition: color 0.3s;
 }
 
 .villa-card__tagline {
@@ -739,6 +751,7 @@ section.sand { background: var(--sand); }
   font-size: 1.8rem;
   margin-bottom: 1rem;
   display: block;
+  color: var(--terra);
 }
 
 .exp-card h3 {
@@ -1508,6 +1521,102 @@ a, button, [role="button"], input, select, textarea, label[for] {
   transition: opacity 0.2s ease;
 }
 .expand-map-wrap:hover:not(.map-expanded) .expand-map__hint { opacity: 1; }
+
+/* ══════════════════════════════════════════
+   EDITORIAL ENHANCEMENTS
+   ══════════════════════════════════════════ */
+
+/* 1. Hero staircase lines */
+.hero__title-line { display: block; }
+.hero__title-line--offset { margin-left: clamp(2.5rem, 14vw, 11rem); }
+
+/* 2. Story pull quote */
+.story-pullquote {
+  margin: 4.5rem auto;
+  text-align: center;
+  max-width: 760px;
+}
+
+.story-pullquote__text {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-style: italic;
+  color: var(--terra);
+  font-weight: 300;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+/* 3. Manifesto section */
+.manifesto-section {
+  background: var(--ocean);
+  padding: 7rem 0;
+}
+
+.manifesto-section__inner { max-width: 1180px; margin: 0 auto; padding: 0 2rem; }
+
+.manifesto-section__text {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--cream);
+  letter-spacing: -0.02em;
+  max-width: 900px;
+}
+
+.manifesto-section__text em { color: var(--terra); font-style: italic; }
+
+/* 4. Featured villa card (flagship spans 2 columns) */
+.villa-card--featured { grid-column: span 2; }
+.villa-card--featured .villa-card__img { aspect-ratio: 16/7; }
+
+/* 5. Asymmetric divider rule */
+.divider-rule {
+  height: 1px;
+  background: var(--divider);
+  margin: 3rem 0;
+  position: relative;
+}
+
+.divider-rule::after {
+  content: '';
+  position: absolute;
+  top: -1px; right: -2.5rem;
+  width: 3.5rem; height: 3px;
+  background: var(--terra);
+  border-radius: 2px;
+}
+
+/* 6. Mobile nav subtitles */
+.nav__mobile-sub {
+  font-family: var(--font-sans);
+  font-size: 0.55rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+  display: block;
+  margin-top: 0.2rem;
+  font-style: normal;
+}
+
+/* 7. Mobile experiences horizontal scroll */
+@media (max-width: 719px) {
+  .experiences-grid {
+    grid-template-columns: 268px;
+    grid-auto-columns: 268px;
+    grid-auto-flow: column;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem;
+    margin-left: -2rem;
+    margin-right: -2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .exp-card { scroll-snap-align: start; }
+}
 
 /* ── UTILITIES ── */
 .text-center { text-align: center; }
