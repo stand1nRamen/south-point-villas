@@ -470,6 +470,59 @@
           </a>
         </div>
 
+        <div id="spv-map-book" class="expand-map-wrap" role="button" tabindex="0" aria-expanded="false" aria-label="Interactive location map — click to expand" style="margin-top:1.75rem;">
+          <div id="spv-map-book-card" class="expand-map">
+            <svg class="expand-map__grid" width="100%" height="100%" aria-hidden="true">
+              <defs>
+                <pattern id="map-grid-book" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="white" stroke-width="0.5"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#map-grid-book)"/>
+            </svg>
+            <svg class="expand-map__roads" width="100%" height="100%" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="0%" y1="35%" x2="100%" y2="35%" stroke="rgba(255,255,255,0.25)" stroke-width="3.5"/>
+              <line x1="0%" y1="62%" x2="100%" y2="62%" stroke="rgba(255,255,255,0.25)" stroke-width="3.5"/>
+              <line x1="28%" y1="0%" x2="28%" y2="100%" stroke="rgba(255,255,255,0.18)" stroke-width="2.5"/>
+              <line x1="68%" y1="0%" x2="68%" y2="100%" stroke="rgba(255,255,255,0.18)" stroke-width="2.5"/>
+              <line x1="0%" y1="18%" x2="100%" y2="18%" stroke="rgba(255,255,255,0.09)" stroke-width="1.5"/>
+              <line x1="0%" y1="50%" x2="100%" y2="50%" stroke="rgba(255,255,255,0.09)" stroke-width="1.5"/>
+              <line x1="0%" y1="80%" x2="100%" y2="80%" stroke="rgba(255,255,255,0.09)" stroke-width="1.5"/>
+              <line x1="14%" y1="0%" x2="14%" y2="100%" stroke="rgba(255,255,255,0.09)" stroke-width="1.5"/>
+              <line x1="47%" y1="0%" x2="47%" y2="100%" stroke="rgba(255,255,255,0.09)" stroke-width="1.5"/>
+              <line x1="83%" y1="0%" x2="83%" y2="100%" stroke="rgba(255,255,255,0.09)" stroke-width="1.5"/>
+            </svg>
+            <div class="expand-map__buildings" aria-hidden="true">
+              <div class="expand-map__building" style="top:40%;left:10%;width:14%;height:18%;transition-delay:0.05s;"></div>
+              <div class="expand-map__building" style="top:14%;left:33%;width:11%;height:14%;transition-delay:0.10s;"></div>
+              <div class="expand-map__building" style="top:68%;left:73%;width:17%;height:16%;transition-delay:0.15s;"></div>
+              <div class="expand-map__building" style="top:18%;right:9%;width:10%;height:22%;transition-delay:0.08s;"></div>
+              <div class="expand-map__building" style="top:53%;left:4%;width:8%;height:11%;transition-delay:0.18s;"></div>
+              <div class="expand-map__building" style="top:6%;left:73%;width:13%;height:10%;transition-delay:0.22s;"></div>
+            </div>
+            <div class="expand-map__water" aria-hidden="true"></div>
+            <div class="expand-map__pin" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" style="filter:drop-shadow(0 0 8px rgba(52,211,153,0.6))">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#34D399"/>
+                <circle cx="12" cy="9" r="2.5" fill="rgba(27,61,79,0.9)"/>
+              </svg>
+            </div>
+            <div class="expand-map__overlay" aria-hidden="true"></div>
+            <div class="expand-map__content">
+              <div class="expand-map__badge">
+                <div class="expand-map__badge-dot"></div>
+                Ahangama, Sri Lanka
+              </div>
+              <div>
+                <div class="expand-map__location">South Point Villas</div>
+                <div class="expand-map__coords">6.0172° N, 80.2497° E</div>
+                <div class="expand-map__underline"></div>
+              </div>
+            </div>
+          </div>
+          <p class="expand-map__hint">Click to expand</p>
+        </div>
+
         <div class="book-perks">
           <h4>Book Direct — What You Get</h4>
           <ul>

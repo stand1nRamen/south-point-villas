@@ -143,6 +143,37 @@ filterBtns.forEach(btn => {
   });
 });
 
+/* ── EXPAND MAP WIDGET ── */
+document.querySelectorAll('.expand-map-wrap').forEach(function(wrap) {
+  var card = wrap.querySelector('.expand-map');
+  if (!card) return;
+
+  wrap.addEventListener('mousemove', function(e) {
+    var rect = wrap.getBoundingClientRect();
+    var dx = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+    var dy = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+    card.style.transform = 'rotateX(' + (-dy * 7) + 'deg) rotateY(' + (dx * 7) + 'deg)';
+  });
+
+  wrap.addEventListener('mouseleave', function() {
+    card.style.transform = '';
+  });
+
+  function toggle() {
+    var expanded = card.classList.toggle('is-expanded');
+    wrap.classList.toggle('map-expanded', expanded);
+    wrap.setAttribute('aria-expanded', String(expanded));
+  }
+
+  wrap.addEventListener('click', toggle);
+  wrap.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggle();
+    }
+  });
+});
+
 /* ── HORIZONTAL PARALLAX on story images ── */
 gsap.utils.toArray('.story-img').forEach(img => {
   gsap.from(img, {
