@@ -4,7 +4,8 @@
    ============================================================ */
 
 /* ── GSAP INIT ── */
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger);
+if (typeof ScrollToPlugin !== 'undefined') gsap.registerPlugin(ScrollToPlugin);
 
 /* ── NAV SCROLL BEHAVIOUR ── */
 const nav = document.querySelector('.nav');
