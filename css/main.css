@@ -1663,69 +1663,141 @@ a, button, [role="button"], input, select, textarea, label[for] {
   .exp-card { scroll-snap-align: start; }
 }
 
-/* ── ROOM GALLERY (Component5 — Capsule Slider) ── */
-.room-gallery {
-  padding: 4rem 0 5rem;
+/* ── CAPSULE GALLERY (Component5 — Capsule Slider) ── */
+.capsule-gallery {
+  padding: 5rem 0 0;
   background: var(--sand);
 }
 
-.room-gallery__header {
-  margin-bottom: 2rem;
+.capsule-gallery__header {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.5rem 2.5rem;
 }
 
-.room-gallery__tabs {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-}
-
-.room-gallery__tab {
-  padding: 0.45rem 1.4rem;
-  border-radius: 50px;
-  border: 1.5px solid var(--ocean);
-  background: transparent;
-  color: var(--ocean);
-  cursor: pointer;
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: background 0.2s, color 0.2s;
-}
-
-.room-gallery__tab:hover,
-.room-gallery__tab.active {
+.capsule-gallery__slider {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/10;
   background: var(--ocean);
-  color: white;
+  cursor: grab;
+  user-select: none;
+}
+.capsule-gallery__slider:active { cursor: grabbing; }
+
+.capsule-gallery__slides {
+  display: flex;
+  height: 100%;
+  will-change: transform;
+  transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
 }
 
-.room-gallery__panels { position: relative; }
-
-.room-gallery__panel { display: none; }
-
-.room-gallery__panel.active {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  animation: panelFadeUp 0.35s ease;
+.capsule-gallery__slide {
+  flex: 0 0 100%;
+  position: relative;
+  overflow: hidden;
 }
 
-.room-gallery__panel img {
+.capsule-gallery__slide img {
   width: 100%;
-  aspect-ratio: 4/3;
+  height: 100%;
   object-fit: cover;
-  border-radius: var(--radius-lg);
+  display: block;
+  pointer-events: none;
 }
 
-@keyframes panelFadeUp {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: none; }
+.capsule-gallery__caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 3rem 2rem 1.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.52) 0%, transparent 100%);
+  color: rgba(255,255,255,0.9);
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 
-@media (max-width: 639px) {
-  .room-gallery__panel.active { grid-template-columns: 1fr; }
+.capsule-gallery__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background 0.2s, transform 0.2s;
+  flex-shrink: 0;
+}
+.capsule-gallery__btn:hover {
+  background: rgba(255,255,255,0.26);
+  transform: translateY(-50%) scale(1.08);
+}
+.capsule-gallery__btn--prev { left: 1.5rem; }
+.capsule-gallery__btn--next { right: 1.5rem; }
+
+.capsule-gallery__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 2rem 2rem;
+  background: var(--sand);
+}
+
+.capsule-gallery__dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  max-width: 70%;
+}
+
+.capsule-gallery__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50px;
+  background: rgba(27,61,79,0.22);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  flex-shrink: 0;
+  transition: width 0.4s cubic-bezier(0.4,0,0.2,1), background 0.3s;
+}
+.capsule-gallery__dot.active {
+  width: 22px;
+  background: var(--ocean);
+}
+.capsule-gallery__dot:hover:not(.active) {
+  background: rgba(27,61,79,0.45);
+}
+
+.capsule-gallery__count {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .capsule-gallery { padding: 4rem 0 0; }
+  .capsule-gallery__slider { aspect-ratio: 4/3; }
+  .capsule-gallery__header { padding: 0 1.25rem 2rem; }
+  .capsule-gallery__btn { width: 38px; height: 38px; }
+  .capsule-gallery__btn--prev { left: 0.75rem; }
+  .capsule-gallery__btn--next { right: 0.75rem; }
+  .capsule-gallery__footer { padding: 1rem 1.25rem 1.75rem; }
 }
 
 /* ── ACCORDION IMAGE GALLERY (Component4) ── */

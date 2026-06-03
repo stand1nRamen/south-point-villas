@@ -208,18 +208,69 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-/* ── ROOM GALLERY (Component5 Capsule Slider) ── */
-document.querySelectorAll('.room-gallery').forEach(gallery => {
-  const tabs = gallery.querySelectorAll('.room-gallery__tab');
-  const panels = gallery.querySelectorAll('.room-gallery__panel');
-  tabs.forEach((tab, i) => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      panels.forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      panels[i].classList.add('active');
-    });
+/* ── CAPSULE GALLERY (Component5 — Capsule Slider) ── */
+document.querySelectorAll('.capsule-gallery').forEach(gallery => {
+  const slidesTrack = gallery.querySelector('.capsule-gallery__slides');
+  const slides = Array.from(gallery.querySelectorAll('.capsule-gallery__slide'));
+  const dotsContainer = gallery.querySelector('.capsule-gallery__dots');
+  const curEl = gallery.querySelector('.capsule-gallery__cur');
+  const totEl = gallery.querySelector('.capsule-gallery__tot');
+  const prevBtn = gallery.querySelector('.capsule-gallery__btn--prev');
+  const nextBtn = gallery.querySelector('.capsule-gallery__btn--next');
+  if (!slides.length || !slidesTrack) return;
+
+  let current = 0;
+  let autoTimer;
+
+  // Build dot indicators
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'capsule-gallery__dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Image ' + (i + 1));
+    dot.addEventListener('click', () => go(i));
+    dotsContainer.appendChild(dot);
   });
+
+  if (totEl) totEl.textContent = String(slides.length).padStart(2, '0');
+
+  function go(n) {
+    const dots = gallery.querySelectorAll('.capsule-gallery__dot');
+    dots[current].classList.remove('active');
+    current = ((n % slides.length) + slides.length) % slides.length;
+    dots[current].classList.add('active');
+    slidesTrack.style.transform = 'translateX(-' + (current * 100) + '%)';
+    if (curEl) curEl.textContent = String(current + 1).padStart(2, '0');
+    resetAuto();
+  }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => go(current + 1), 4500);
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', () => go(current - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => go(current + 1));
+
+  // Touch swipe
+  let touchStartX = 0;
+  slidesTrack.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  slidesTrack.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) go(current + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+
+  // Pause auto on hover
+  gallery.addEventListener('mouseenter', () => clearInterval(autoTimer));
+  gallery.addEventListener('mouseleave', resetAuto);
+
+  // Keyboard nav
+  gallery.setAttribute('tabindex', '0');
+  gallery.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') go(current - 1);
+    if (e.key === 'ArrowRight') go(current + 1);
+  });
+
+  resetAuto();
 });
 
 /* ── REDUCED MOTION ── */
