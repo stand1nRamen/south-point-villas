@@ -330,6 +330,10 @@
         <h2>Send an Enquiry</h2>
         <p class="form-subtitle">We'll reply within a few hours with availability and rates.</p>
 
+        <noscript>
+          <p class="form-note" style="margin-bottom:1rem;">This form needs JavaScript to send your enquiry. Please email us directly at <a href="mailto:reservations@southpointvilla.com" style="color:var(--terra-text);font-weight:500;">reservations@southpointvilla.com</a> or call <a href="tel:+94766766766" style="color:var(--terra-text);font-weight:500;">+94 766 766 766</a>.</p>
+        </noscript>
+
         <form id="enquiry-form" novalidate>
           <div class="form-row">
             <div class="form-group">
@@ -620,7 +624,13 @@
     ].filter(Boolean).join('\n');
 
     const encoded = encodeURIComponent(text);
-    window.open(`https://wa.me/94766766766?text=${encoded}`, '_blank');
+    const waWin = window.open(`https://wa.me/94766766766?text=${encoded}`, '_blank');
+
+    if (!waWin) {
+      // Popup blocked or WhatsApp unreachable — fall back to a pre-filled email
+      const subject = encodeURIComponent('South Point Villas Enquiry');
+      window.location.href = `mailto:reservations@southpointvilla.com?subject=${subject}&body=${encoded}`;
+    }
 
     document.getElementById('enquiry-form').style.display = 'none';
     document.getElementById('form-success').style.display = 'block';
