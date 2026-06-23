@@ -1246,9 +1246,11 @@ section.sand { background: var(--sand); }
   .stats-bar__inner { display: grid; grid-template-columns: repeat(2, 1fr); }
   .stats-bar__item:nth-child(2) { border-right: none; }
 
-  .villas-grid { grid-template-columns: 1fr; }
-  .villa-card__tagline { flex: none; }
+  .villas-grid { grid-template-columns: 1fr; align-items: start; }
+  .villa-card--featured { grid-column: span 1; }
   .villa-card--featured .villa-card__img { aspect-ratio: 4/3; }
+  .villa-card__body { flex: 0 0 auto; }
+  .villa-card__tagline { flex: none; }
   .experiences-grid { grid-template-columns: 1fr 1fr; }
   .reviews-grid { grid-template-columns: 1fr; }
   .story-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -1662,6 +1664,28 @@ a, button, [role="button"], input, select, textarea, label[for] {
   }
   .exp-card { scroll-snap-align: start; }
 }
+
+/* ── ROOM GALLERY (tab-based bedroom viewer) ── */
+.room-gallery { padding: 4rem 0 5rem; background: var(--sand); }
+.room-gallery__header { margin-bottom: 2rem; }
+.room-gallery__tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.room-gallery__tab {
+  padding: 0.45rem 1.4rem; border-radius: 50px;
+  border: 1.5px solid var(--ocean); background: transparent; color: var(--ocean);
+  cursor: pointer; font-family: var(--font-sans); font-size: 0.75rem;
+  font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  transition: background 0.2s, color 0.2s;
+}
+.room-gallery__tab:hover, .room-gallery__tab.active { background: var(--ocean); color: white; }
+.room-gallery__panels { position: relative; }
+.room-gallery__panel { display: none; }
+.room-gallery__panel.active {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  animation: panelFadeUp 0.35s ease;
+}
+.room-gallery__panel img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius-lg); }
+@keyframes panelFadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@media (max-width: 639px) { .room-gallery__panel.active { grid-template-columns: 1fr; } }
 
 /* ── CAPSULE GALLERY (Component5 — Capsule Slider) ── */
 .capsule-gallery {

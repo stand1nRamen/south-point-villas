@@ -208,6 +208,20 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
+/* ── ROOM GALLERY (tab-based bedroom viewer) ── */
+document.querySelectorAll('.room-gallery').forEach(gallery => {
+  const tabs = gallery.querySelectorAll('.room-gallery__tab');
+  const panels = gallery.querySelectorAll('.room-gallery__panel');
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      panels[i].classList.add('active');
+    });
+  });
+});
+
 /* ── CAPSULE GALLERY (Component5 — Capsule Slider) ── */
 document.querySelectorAll('.capsule-gallery').forEach(gallery => {
   const slidesTrack = gallery.querySelector('.capsule-gallery__slides');
